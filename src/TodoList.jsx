@@ -4,16 +4,26 @@ import TodoItem from "./TodoItem"
 import TodoForm from "./TodoForm"
 
 import { useState } from "react"
+import { useEffect } from "react"
 
-const tempTodos = [
-	{ id: 1, text: "feed the cat", completed: false },
-	{ id: 2, text: "feed the zach", completed: false },
-	{ id: 3, text: "organize the threads", completed: true },
-]
+//Retrieve list from local storage under key "todos"
+const getList = () => {
+	const data = JSON.parse(localStorage.getItem("todos"))
+	//If list doesn't exist in local storage, return empty array
+	if (!data) return []
+	return data
+}
 
 export default function TodoList() {
-	const [todos, setTodos] = useState(tempTodos)
+	const [todos, setTodos] = useState(getList)
 
+	//Save to local storage any time todos list changes
+	useEffect(() => {
+		//key of 'todos' and stringify the array of todos
+		localStorage.setItem("todos", JSON.stringify(todos))
+	}, [todos])
+
+	//Toggle task as complete/incomplete
 	const toggleItem = (id) => {
 		setTodos((prevTodos) => {
 			return prevTodos.map((task) => {
@@ -26,18 +36,20 @@ export default function TodoList() {
 		})
 	}
 
+	//Delete task from list
 	const removeItem = (id) => {
 		setTodos((prevTodos) => {
 			return prevTodos.filter((task) => task.id !== id)
 		})
 	}
 
+	//Add task to list
 	const addItem = (task) => {
 		setTodos((prevTodos) => {
 			return [
 				...prevTodos,
-				{id: crypto.randomUUID(), text: task, completed: false}
-			] 
+				{ id: crypto.randomUUID(), text: task, completed: false },
+			]
 		})
 	}
 
@@ -48,7 +60,7 @@ export default function TodoList() {
 					Pomo Focus
 				</Typography>
 
-				<TodoForm addTask={addItem}/>
+				<TodoForm addTask={addItem} />
 
 				<List
 					sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
