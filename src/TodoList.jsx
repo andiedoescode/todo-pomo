@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material"
 import List from "@mui/material/List"
 import TodoItem from "./TodoItem"
+import TodoForm from "./TodoForm"
 
 import { useState } from "react"
 
@@ -31,12 +32,23 @@ export default function TodoList() {
 		})
 	}
 
+	const addItem = (task) => {
+		setTodos((prevTodos) => {
+			return [
+				...prevTodos,
+				{id: crypto.randomUUID(), text: task, completed: false}
+			] 
+		})
+	}
+
 	return (
 		<>
 			<Box sx={{ width: "100%", maxWidth: 500 }}>
 				<Typography variant='h3' component='h1' gutterBottom>
 					Pomo Focus
 				</Typography>
+
+				<TodoForm addTask={addItem}/>
 
 				<List
 					sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
