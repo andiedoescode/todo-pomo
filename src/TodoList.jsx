@@ -2,6 +2,7 @@ import {
 	Box,
 	Button,
 	Divider,
+	IconButton,
 	ListItem,
 	Typography,
 	createTheme,
@@ -11,6 +12,7 @@ import List from "@mui/material/List"
 import TodoItem from "./TodoItem"
 import TodoForm from "./TodoForm"
 import FilterGrp from "./FilterGrp"
+import GitHubIcon from "@mui/icons-material/GitHub"
 
 import { useState } from "react"
 import { useEffect } from "react"
@@ -156,6 +158,20 @@ export default function TodoList() {
 					</ListItem>
 				</List>
 			</Box>
+
+			<Typography
+				variant='body2'
+				component='span'
+				sx={{ color: "#638889", display: "flex", justifyContent: "center" }}>
+				built by
+				<a
+					href='https://github.com/andiedoescode/todo-pomo'
+					target='_blank'
+					rel='noreferrer'
+					style={{ textDecoration: "underline dotted", color: "#638889", paddingLeft: "0.18rem"}}>
+					andrea
+				</a>
+			</Typography>
 		</ThemeProvider>
 	)
 }

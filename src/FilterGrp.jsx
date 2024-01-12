@@ -9,6 +9,7 @@ export default function FilterGrp({ options, filter, setFilter }) {
 					key={option}
 					name={option}
 					setFilter={setFilter}
+					isSelected={option === filter}
 				/>
 			))}
 		</ButtonGroup>

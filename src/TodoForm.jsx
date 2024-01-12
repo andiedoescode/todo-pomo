@@ -1,5 +1,8 @@
 import { ListItem } from "@mui/material"
 import TextField from "@mui/material/TextField"
+import { InputAdornment } from "@mui/material"
+import { IconButton } from "@mui/material"
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft"
 
 import { useState } from "react"
 
@@ -24,8 +27,18 @@ export default function TodoForm({ addTask }) {
 					id='outlined-basic'
 					label='What needs to be done?'
 					variant='outlined'
+					color='success'
 					value={task}
 					onChange={handleChange}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position='end'>
+								<IconButton aria-label='create todo' edge='end' type='submit'>
+									<KeyboardDoubleArrowLeftIcon />
+								</IconButton>
+							</InputAdornment>
+						),
+					}}
 				/>
 			</form>
 		</ListItem>

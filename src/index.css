@@ -2,3 +2,7 @@ html,
 #root {
 	background-color: #9dbc98;
 }
+
+a:hover {
+	opacity: 70%;
+}
