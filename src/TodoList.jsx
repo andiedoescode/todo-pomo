@@ -1,5 +1,6 @@
 import {
 	Box,
+	Button,
 	Divider,
 	ListItem,
 	Typography,
@@ -100,6 +101,13 @@ export default function TodoList() {
 		})
 	}
 
+	//Remove all completed tasks
+	const clearComplete = () => {
+		setTodos((prevTodos) => {
+			return todos.filter((task) => !task.completed)
+		})
+	}
+
 	//Filter task list
 	const taskList = todos
 		.filter(filterAction[filter])
@@ -118,12 +126,19 @@ export default function TodoList() {
 				<Typography
 					variant='h3'
 					component='h1'
-					gutterBottom
 					sx={{ fontFamily: "Silkscreen", color: "#638889" }}>
 					pomo focus
 				</Typography>
 
 				<List sx={listStyles}>
+					<ListItem sx={{ justifyContent: "space-around", mt: 1, mb: 1 }}>
+						<FilterGrp
+							options={filterNames}
+							filter={filter}
+							setFilter={setFilter}
+						/>
+					</ListItem>
+
 					<TodoForm addTask={addItem} />
 					{taskList}
 					<Divider />
@@ -131,11 +146,13 @@ export default function TodoList() {
 						<Typography variant='body2'>
 							{remaining} task{remaining !== 1 && "s"} left
 						</Typography>
-						<FilterGrp
-							options={filterNames}
-							filter={filter}
-							setFilter={setFilter}
-						/>
+						<Button
+							variant='outlined'
+							size='small'
+							color='error'
+							onClick={clearComplete}>
+							Clear Completed
+						</Button>
 					</ListItem>
 				</List>
 			</Box>
