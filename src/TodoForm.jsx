@@ -21,13 +21,13 @@ export default function TodoForm({ addTask }) {
 
 	return (
 		<ListItem>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} style={{ width: "100%" }}>
 				<TextField
-					sx={{ width: "475px", fontFamily: "Albert Sans" }}
 					id='outlined-basic'
 					label='What needs to be done?'
 					variant='outlined'
 					color='success'
+					fullWidth
 					value={task}
 					onChange={handleChange}
 					InputProps={{

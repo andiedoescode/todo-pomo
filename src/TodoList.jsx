@@ -32,6 +32,7 @@ const boxStyles = {
 	m: 6,
 	p: 4,
 	maxWidth: "600px",
+	minWidth: "280px",
 	marginLeft: "auto",
 	marginRight: "auto",
 	backgroundColor: "#F9EFDB",
