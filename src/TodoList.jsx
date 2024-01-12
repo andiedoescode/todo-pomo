@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Divider, ListItem, Typography } from "@mui/material"
 import List from "@mui/material/List"
 import TodoItem from "./TodoItem"
 import TodoForm from "./TodoForm"
@@ -6,6 +6,34 @@ import FilterGrp from "./FilterGrp"
 
 import { useState } from "react"
 import { useEffect } from "react"
+
+// const theme = createTheme({
+// 	typography: {
+// 		fontFamily: ["Albert Sans", "sans-serif"].join(","),
+// 	},
+// })
+
+const boxStyles = {
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "center",
+	alignItems: "center",
+	m: 6,
+	p: 4,
+	maxWidth: "600px",
+	marginLeft: "auto",
+	marginRight: "auto",
+	backgroundColor: "#F9EFDB",
+	boxShadow: "0px 10px 0px -5px #638889",
+	border: "2px solid #638889",
+	borderRadius: "15px",
+}
+
+const listStyles = {
+	width: "100%",
+	maxWidth: "500px",
+	fontFamily: "inherit",
+}
 
 //Retrieve list from local storage under key "todos"
 const getList = () => {
@@ -25,6 +53,9 @@ const filterNames = Object.keys(filterAction)
 export default function TodoList() {
 	const [todos, setTodos] = useState(getList)
 	const [filter, setFilter] = useState("All")
+
+	//Calculate number of todo tasks remaining
+	const remaining = todos.filter((task) => !task.completed).length
 
 	//Save to local storage any time todos list changes
 	useEffect(() => {
@@ -75,34 +106,32 @@ export default function TodoList() {
 		))
 
 	return (
-		<>
-			<Box sx={{ width: "100%", maxWidth: 500 }}>
-				<Typography variant='h3' component='h1' gutterBottom>
-					Pomo Focus
-				</Typography>
+		// <ThemeProvider theme={theme}>
+		<Box sx={boxStyles}>
+			<Typography
+				variant='h3'
+				component='h1'
+				gutterBottom
+				sx={{ fontFamily: "Silkscreen", color: "#638889" }}>
+				pomo focus
+			</Typography>
 
+			<List sx={listStyles}>
 				<TodoForm addTask={addItem} />
-
-				<List
-					sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-					{/* {todos.map((task) => {
-						return (
-							<TodoItem
-								task={task}
-								key={task.id}
-								toggleItem={() => toggleItem(task.id)}
-								removeItem={() => removeItem(task.id)}
-							/>
-						)
-					})} */}
-					{taskList}
+				{taskList}
+				<Divider />
+				<ListItem>
+					<span>
+						{remaining} task{remaining !== 1 && "s"} left
+					</span>
 					<FilterGrp
 						options={filterNames}
 						filter={filter}
 						setFilter={setFilter}
 					/>
-				</List>
-			</Box>
-		</>
+				</ListItem>
+			</List>
+		</Box>
+		// </ThemeProvider>
 	)
 }
