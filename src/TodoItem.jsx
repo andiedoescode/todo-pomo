@@ -4,7 +4,7 @@ import ListItemIcon from "@mui/material/ListItemIcon"
 import ListItemText from "@mui/material/ListItemText"
 import Checkbox from "@mui/material/Checkbox"
 import IconButton from "@mui/material/IconButton"
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
 
 export default function TodoItem({ task, toggleItem, removeItem }) {
 	const labelId = `checkbox-list-label-${task.id}`
@@ -18,10 +18,7 @@ export default function TodoItem({ task, toggleItem, removeItem }) {
 				</IconButton>
 			}
 			disablePadding>
-			<ListItemButton
-				role={undefined}
-				// onClick={handleToggle(value)}
-				dense>
+			<ListItemButton role={undefined}>
 				<ListItemIcon>
 					<Checkbox
 						edge='start'
@@ -32,7 +29,10 @@ export default function TodoItem({ task, toggleItem, removeItem }) {
 						onChange={toggleItem}
 					/>
 				</ListItemIcon>
-				<ListItemText id={labelId} primary={task.text} />
+				<ListItemText
+					id={labelId}
+					primary={task.text}
+				/>
 			</ListItemButton>
 		</ListItem>
 	)

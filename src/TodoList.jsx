@@ -1,4 +1,11 @@
-import { Box, Divider, ListItem, Typography } from "@mui/material"
+import {
+	Box,
+	Divider,
+	ListItem,
+	Typography,
+	createTheme,
+	ThemeProvider,
+} from "@mui/material"
 import List from "@mui/material/List"
 import TodoItem from "./TodoItem"
 import TodoForm from "./TodoForm"
@@ -7,11 +14,12 @@ import FilterGrp from "./FilterGrp"
 import { useState } from "react"
 import { useEffect } from "react"
 
-// const theme = createTheme({
-// 	typography: {
-// 		fontFamily: ["Albert Sans", "sans-serif"].join(","),
-// 	},
-// })
+const theme = createTheme({
+	typography: {
+		fontFamily: ["Albert Sans", "sans-serif"].join(","),
+		// fontSize: "1.5rem"
+	},
+})
 
 const boxStyles = {
 	display: "flex",
@@ -32,7 +40,6 @@ const boxStyles = {
 const listStyles = {
 	width: "100%",
 	maxWidth: "500px",
-	fontFamily: "inherit",
 }
 
 //Retrieve list from local storage under key "todos"
@@ -106,32 +113,32 @@ export default function TodoList() {
 		))
 
 	return (
-		// <ThemeProvider theme={theme}>
-		<Box sx={boxStyles}>
-			<Typography
-				variant='h3'
-				component='h1'
-				gutterBottom
-				sx={{ fontFamily: "Silkscreen", color: "#638889" }}>
-				pomo focus
-			</Typography>
+		<ThemeProvider theme={theme}>
+			<Box sx={boxStyles}>
+				<Typography
+					variant='h3'
+					component='h1'
+					gutterBottom
+					sx={{ fontFamily: "Silkscreen", color: "#638889" }}>
+					pomo focus
+				</Typography>
 
-			<List sx={listStyles}>
-				<TodoForm addTask={addItem} />
-				{taskList}
-				<Divider />
-				<ListItem>
-					<span>
-						{remaining} task{remaining !== 1 && "s"} left
-					</span>
-					<FilterGrp
-						options={filterNames}
-						filter={filter}
-						setFilter={setFilter}
-					/>
-				</ListItem>
-			</List>
-		</Box>
-		// </ThemeProvider>
+				<List sx={listStyles}>
+					<TodoForm addTask={addItem} />
+					{taskList}
+					<Divider />
+					<ListItem sx={{ justifyContent: "space-between" }}>
+						<Typography variant='body2'>
+							{remaining} task{remaining !== 1 && "s"} left
+						</Typography>
+						<FilterGrp
+							options={filterNames}
+							filter={filter}
+							setFilter={setFilter}
+						/>
+					</ListItem>
+				</List>
+			</Box>
+		</ThemeProvider>
 	)
 }
