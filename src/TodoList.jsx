@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material"
 import List from "@mui/material/List"
 import TodoItem from "./TodoItem"
 import TodoForm from "./TodoForm"
+import FilterGrp from "./FilterGrp"
 
 import { useState } from "react"
 import { useEffect } from "react"
@@ -14,8 +15,16 @@ const getList = () => {
 	return data
 }
 
+const filterAction = {
+	All: () => true,
+	Active: (task) => !task.completed,
+	Completed: (task) => task.completed,
+}
+const filterNames = Object.keys(filterAction)
+
 export default function TodoList() {
 	const [todos, setTodos] = useState(getList)
+	const [filter, setFilter] = useState("All")
 
 	//Save to local storage any time todos list changes
 	useEffect(() => {
@@ -53,6 +62,18 @@ export default function TodoList() {
 		})
 	}
 
+	//Filter task list
+	const taskList = todos
+		.filter(filterAction[filter])
+		.map((task) => (
+			<TodoItem
+				task={task}
+				key={task.id}
+				toggleItem={() => toggleItem(task.id)}
+				removeItem={() => removeItem(task.id)}
+			/>
+		))
+
 	return (
 		<>
 			<Box sx={{ width: "100%", maxWidth: 500 }}>
@@ -64,7 +85,7 @@ export default function TodoList() {
 
 				<List
 					sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-					{todos.map((task) => {
+					{/* {todos.map((task) => {
 						return (
 							<TodoItem
 								task={task}
@@ -73,7 +94,13 @@ export default function TodoList() {
 								removeItem={() => removeItem(task.id)}
 							/>
 						)
-					})}
+					})} */}
+					{taskList}
+					<FilterGrp
+						options={filterNames}
+						filter={filter}
+						setFilter={setFilter}
+					/>
 				</List>
 			</Box>
 		</>
