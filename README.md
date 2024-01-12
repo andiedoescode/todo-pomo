@@ -9,3 +9,12 @@ An clean todo list app built for my own pomodoro sessions. Meant for use as shor
 ## How It's Made:
 
 Tech Used: React, Material UI, Vite, JavaScript, HTML, CSS, localStorage
+
+I chose to deconstruct it into a few more components that may have been strictly necessary as a way to practice passing through props and state  in React.
+<ul>
+	<li>FilterBtn: Button template for the task filtering feature.</li>
+	<li>FilterGrp: Button group with props passed in to map necessary buttons.</li>
+	<li>TodoForm: Form allowing users to add tasks.</li>
+	<li>TodoItem: Individual tasks to be displayed in the list.</li>
+	<li>TodoList: List displaying all the user's tasks and filter buttons. Includes state, logic, and some styling for the app features.</li>
+</ul>
