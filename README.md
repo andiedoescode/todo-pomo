@@ -10,6 +10,8 @@ An clean todo list app built for my own pomodoro sessions. Meant for use as shor
 
 Tech Used: React, Material UI, Vite, JavaScript, HTML, CSS, localStorage
 
+![Screenshots of Pomo Focus filtering feature - all, active, completed](https://github.com/andiedoescode/todo-pomo/assets/98671035/f23d2331-87dd-4060-8b9c-70d79668d431)
+
 I chose to deconstruct it into a few more components that may have been strictly necessary as a way to practice passing through props and state  in React.
 <ul>
 	<li>FilterBtn: Button template for the task filtering feature.</li>
