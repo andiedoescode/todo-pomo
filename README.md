@@ -4,6 +4,8 @@ An clean todo list app built for my own pomodoro sessions. Meant for use as shor
 
 **Link to project:** https://extraordinary-daffodil-23a0f7.netlify.app/
 
+![Animated .gif of Pomo Focus features in use](https://github.com/andiedoescode/todo-pomo/assets/98671035/7ceaec5e-e71a-4b9a-bef1-b64bb42b9ba9)
+
 ## How It's Made:
 
 Tech Used: React, Material UI, Vite, JavaScript, HTML, CSS, localStorage
